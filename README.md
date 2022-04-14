@@ -45,6 +45,7 @@ Deployed on Heroku and Azure.
 [![Tools | GitHub](https://img.shields.io/badge/Github-eeeeee?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=181717)][github]
 [![Tools | Postman](https://img.shields.io/badge/Postman-eeeeee?style=for-the-badge&logo=postman&logoColor=FF6C37&labelColor=fefefe)][postman]
 [![Tools | Heroku](https://img.shields.io/badge/Heroku-eeeeee?style=for-the-badge&logo=heroku&logoColor=ffffff&labelColor=430098)][heroku]
+[![Tools | Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-eeeeee?style=for-the-badge&logo=microsoft-azure&logoColor=ffffff&labelColor=0078D4)][microsoft_azure]
 
 ---
 
@@ -75,6 +76,7 @@ Deployed on Heroku and Azure.
 [git]: https://git-scm.com/
 [github]: https://github.com/
 [heroku]: https://www.heroku.com/
+[microsoft_azure]: https://azure.microsoft.com/en-in/features/azure-portal/
 
 <!-- Reach  -->
 

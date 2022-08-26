@@ -9,7 +9,7 @@ from logger import logger
 load_dotenv()
 MONGO_URI = getenv("MONGO_URI")
 # MONGO_URI = "mongodb://localhost/"
-INEURON_URL = "https://courses.ineuron.ai/"
+INEURON_URL = "https://ineuron.ai/courses/"
 
 course_collection = connection(MONGO_URI)
 

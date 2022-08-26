@@ -2,14 +2,14 @@ from os import getenv
 from dotenv import load_dotenv
 from scrapper import scrap_all, scrap_one
 from model import connection
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, send_file
 from flask_cors import CORS
 from logger import logger
 
 load_dotenv()
 MONGO_URI = getenv("MONGO_URI")
 # MONGO_URI = "mongodb://localhost/"
-INEURON_URL = "https://ineuron.ai/courses/"
+INEURON_URL = getenv("INEURON_URL")
 
 course_collection = connection(MONGO_URI)
 
@@ -60,6 +60,11 @@ def post_course():
 def get_course(course_name):
     course_data = course_collection.find_one({"Title": course_name}, {"_id": 0})
     return render_template("course.html", course_data=course_data)
+
+
+@app.post("/logs")
+def download_logs():
+    return send_file("./log_file.log")
 
 
 @app.get("/scrapper")

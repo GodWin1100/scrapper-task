@@ -23,17 +23,18 @@ def course_schema(page_data: dict, detailed_data: dict, meta_data: dict, curricu
 
 
 def fetch_course(site_url: str = None, course_name: str = None, *, db_collection: object, full_url: str = None):
-    """Scrap course from https://courses.ineuron.ai with specific url. If already existing in database then pass
+    """Scrap course from courses page with specific url. If already existing in database then pass
 
 
     Args:
-        site_url (str): https://courses.ineuron.ai as input
-        course_name (str): coursename from https://courses.ineuron.ai for scrapping
+        site_url (str): courses page url as input
+        course_name (str): coursename from courses page url for scrapping
         db_collection (object): collection object
         full_url (str): course url for specific course scrapping
     """
-    course_url = full_url if full_url else site_url + "/" + course_name.replace(" ", "-")
+    course_url = full_url if full_url else site_url.replace("courses", "course") + "/" + course_name.replace(" ", "-")
     course_name = course_name or full_url.split("/")[-1].replace("-", " ")
+    print(course_url)
     if not db_collection.find_one({"Title": course_name}):
         logger.debug(f"Fetching for {course_name}")
         course_res = requests.get(course_url)
@@ -54,7 +55,7 @@ def scrap_all(site_url: str, db_collection: object):
     """Scrap all the course from https://courses.ineuron.ai/
 
     Args:
-        site_url (str): https://courses.ineuron.ai as input 
+        site_url (str): courses page url as input 
         db_collection (object): collection object
     """
     logger.debug(f"Scrapping all courses")
@@ -65,6 +66,7 @@ def scrap_all(site_url: str, db_collection: object):
     raw_course = raw_json["props"]["pageProps"]["initialState"]["init"]
     course_names = list(raw_course["courses"].keys())
     for course_name in course_names:
+        print(course_name)
         fetch_course(site_url, course_name, db_collection=db_collection)
 
 
@@ -72,7 +74,7 @@ def scrap_one(site_url: str, db_collection: object):
     """Scrap one site only
 
     Args:
-        site_url (str): site url from https://courses.ineuron.ai to scrap
+        site_url (str): site url from courses page to scrap
         db_collection (object): collection object
     """
     fetch_course(db_collection=db_collection, full_url=site_url)
